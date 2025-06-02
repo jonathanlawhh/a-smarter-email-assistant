@@ -24,10 +24,10 @@ func googleFunctionsEntrypoint(w http.ResponseWriter, r *http.Request) {
 	// Set CORS headers for the main request.
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	if r.Method != "POST" {
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		return
-	}
+	//if r.Method != "POST" {
+	//	w.WriteHeader(http.StatusMethodNotAllowed)
+	//	return
+	//}
 
 	var inp AiObject.InputPayload
 
