@@ -43,7 +43,7 @@ go install
 2. Run the script.
 
 ```bash
-go run .\Local\main.go
+go run main.go
 ```
 
 `.env` parameters:
