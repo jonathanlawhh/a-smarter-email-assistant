@@ -11,7 +11,7 @@ steps:
     [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
+      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
       '.',
     ]
 
@@ -21,7 +21,7 @@ steps:
   args:
     [
       'push',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
+      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
     ]
 
 # Deploy to Cloud Run
@@ -33,7 +33,7 @@ steps:
       'deploy',
       'a-smarter-email-assistant', # Replace with your Cloud Run service name
       '--image',
-      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
+      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
       '--region',
       'us-central1', # Replace with your desired region
       '--platform',
@@ -41,4 +41,4 @@ steps:
       '--allow-unauthenticated',
     ]
 images:
-  - us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA # Replace cloud-run-go-app with your repo name
+  - us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant/a-smarter-email-assistant:$SHORT_SHA # Replace cloud-run-go-app with your repo name
