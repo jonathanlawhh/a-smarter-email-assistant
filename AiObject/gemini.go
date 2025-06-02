@@ -1,16 +1,15 @@
-package Gemini
+package AiObject
 
 import (
 	"context"
 	"encoding/json"
-	"github.com/jonathanlawhh/a-smarter-email-assistant/AiObject"
 	"google.golang.org/genai"
 	"os"
 	"strings"
 )
 
-func GenerateResponse(constructPrompt string) (AiObject.ResponseObj, error) {
-	var outputData AiObject.ResponseObj
+func generateGeminiResponse(constructPrompt string) (ResponseObj, error) {
+	var outputData ResponseObj
 
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
