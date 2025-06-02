@@ -1,0 +1,44 @@
+steps:
+# Build the Go application
+- name: 'golang:1.24' # Or a specific Go version
+  id: build
+  args: ['go', 'build', '-o', 'main'] # Adjust 'main' to your executable name
+
+# Build the Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  id: docker-build
+  args:
+    [
+      'build',
+      '-t',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
+      '.',
+    ]
+
+# Push the Docker image to Artifact Registry
+- name: 'gcr.io/cloud-builders/docker'
+  id: docker-push
+  args:
+    [
+      'push',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
+    ]
+
+# Deploy to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: deploy
+  args:
+    [
+      'run',
+      'deploy',
+      'a-smarter-email-assistant', # Replace with your Cloud Run service name
+      '--image',
+      'us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA', # Replace cloud-run-go-app with your repo name
+      '--region',
+      'us-central1', # Replace with your desired region
+      '--platform',
+      'managed',
+      '--allow-unauthenticated',
+    ]
+images:
+  - us-central1-docker.pkg.dev/$PROJECT_ID/a-smarter-email-assistant:$SHORT_SHA # Replace cloud-run-go-app with your repo name
